@@ -1,5 +1,6 @@
 from django.db import models
 
+# Create your models here.
 class eliminacion_compras(models.Model):
     id = models.IntegerField(primary_key=True)
     id_usuario = models.ForeignKey(usuario, on_delete=models.CASCADE)
@@ -9,7 +10,7 @@ class eliminacion_compras(models.Model):
     estado = models.IntegerField()
 
     class Meta: db_table = 'eliminacion_compra'
---------------------------------------------------------------------------------
+
 class eliminacion_ventas(models.Model):
     id = models.IntegerField(primary_key=True)
     id_usuario = models.ForeignKey(usuario, on_delete=models.CASCADE)
@@ -19,4 +20,3 @@ class eliminacion_ventas(models.Model):
     estado = models.IntegerField()
 
     class Meta: db_table = 'eliminacion_ventas'
-# Create your models here.

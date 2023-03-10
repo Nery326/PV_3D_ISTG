@@ -11,7 +11,6 @@ class eliminacion_compras(models.Model):
 
     class Meta: db_table = 'eliminacion_compra'
 
-
 class eliminacion_ventas(models.Model):
     id = models.IntegerField(primary_key=True)
     id_usuario = models.ForeignKey(usuario, on_delete=models.CASCADE)

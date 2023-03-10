@@ -1,0 +1,11 @@
+{% extends 'menu.html' %}
+{% block titulo %} eliminar {% endblock %}
+{% block body %}
+    <form method="POST">{% csrf_token %}
+        <h2>¿Desea eliminar el sisguiente trabajador {{ trabajador.nombre }} ?</h2>
+        <div><i class="fa-solid fa-user fa-5x" style="color: red"></i></div>
+        <br>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'listado_trabajadores' %}" class="btn btn-primary">Cancelar </a>
+    </form>
+{% endblock %}

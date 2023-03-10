@@ -1,0 +1,59 @@
+{% extends 'menu.html' %}
+{% block titulo %} lista de Usuarios {% endblock titulo %}
+{% block body %}
+    <div class="table-stats order-table ov-h">
+    {% if object_list %}
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+               <h1><i class="fas fa-users fa-3x" style="color:green"></i>Lista de Usuarios</h1>
+		<a href="{% url 'registar_Usuarios' %}" class="btn_new"><i class="fas fa-user-plus"></i> Registar Usuarios </a>
+            </div>
+    <table id="tabla_usuarios" class="table">
+          <thead>
+             <tr>
+              <th>ID</th>
+              <th>NOMBRE</th>
+              <th>CORREO</th>
+              <th>Rol</th>
+              <th>Trabajador</th>
+              <th>OPTIONOS</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% for i in object_list %}
+              <tr>
+              <td>{{ i.id }}</td>
+              <td>{{ i.nombres }}</td>
+              <td>{{ i.email }}</td>
+              <td>{{ i.rol }}</td>
+              <td>{{ i.trabajador }}</td>
+             <th >
+                 {% if perms.loginapp.change_usuario %}
+                 <a href="#">
+                 <button class="btn btn-outline-primary btn-sm">
+                 <i class="fas fa-user-pen"></i>
+                </button>
+             </a>
+                 {% endif %}
+              {% if perms.loginapp.delete_usuario %}
+                 <a href="#">
+                      <button class="btn btn-outline-danger btn-sm">
+                      <i class="fas fa-trash"></i></button>
+                 </a>
+             {% endif %}
+             </th>
+            </tr>
+          {% endfor %}
+          </tbody>
+         </table>
+        <div>
+            {% include 'paginator.html' %}
+        </div>
+        </div>
+    </div>
+     {% else %}
+    <h1>No exite Usurios Regsitrados</h1>
+      {% endif %}
+       </div>
+{% endblock %}

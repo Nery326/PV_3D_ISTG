@@ -1,0 +1,60 @@
+{% extends 'menu.html' %}
+{% block titulo %} lista de Trabajadores {% endblock titulo %}
+{% block body %}
+    <div class="table-stats order-table ov-h">
+    {% if object_list %}
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+               <h1><i class="fas fa-users fa-3x" style="color:green"></i>Lista de Trabajadores</h1>
+		<a href="{% url 'crearTrabajador' %}" class="btn_new"><i class="fas fa-user-plus"></i> Registar Trabajador </a>
+            </div>
+        <table id="tabla_usuarios" class="table">
+            <thead>
+                <tr>
+                     <th>ID</th>
+                      <th colspan="2" style="text-align:center ">NOMBRE</th>
+                      <th>ROL</th>
+                      <th>Correo</th>
+                      <th>DIRECCION</th>
+                      <th>OPTIONOS</th>
+                </tr>
+            </thead>
+            <tbody>
+             {% for i in object_list  %}
+              <tr>
+              <td>{{ i.id }}</td>
+              <td>{{ i.nombre }}</td><td>{{ i.apellido }}</td>
+              <td>{{ i.rol }}</td>
+               <td>{{ i.correo }}</td>
+             <td>{{ i.direccion }}</td>
+             <th >
+                 {% if perms.loginapp.change_trabajadores %}
+                 <a href="{% url 'editarTrabajador'  i.id%}" >
+                 <button class="btn btn-outline-primary btn-sm">
+                 <i class="fas fa-user-pen"></i>
+                </button>
+             </a>
+                 {% endif %}
+              {% if perms.loginapp.delete_trabajadores %}
+                 <a href="{% url 'eliminar_trabajador'  i.id%}">
+                      <button class="btn btn-outline-danger btn-sm">
+                      <i class="fas fa-trash"></i></button>
+                 </a>
+             {% endif %}
+             </th>
+            </tr>
+          {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <div>
+            {% include 'paginator.html' %}
+        </div>
+    </div>
+      {% else %}
+    <h1>No exiten Trabajadores  Regsitrados</h1>
+      {% endif %}
+    </div>
+
+{% endblock %}

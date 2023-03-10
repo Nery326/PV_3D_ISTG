@@ -1,0 +1,39 @@
+{% extends 'menu.html' %}
+{% block titulo %} registrar Usuario {% endblock %}
+
+{% block body %}
+    <section id="container">
+		<div class="form_register">
+			<hr>
+        <div class="divInfoSistem">
+		<div class="containerPerfil">
+			<div class="containerDataUser">
+				<div class="divDataUser">
+                    <div class="contenedor">
+                    <div class="contenedor-botones">
+				<a href="{% url 'listaUsuarios' %}"><button class="boton cinco">
+				<span><i class="fa-solid fa-arrow-left"></i></span>
+			</button></a>
+
+                    <h4 style="text-align: center">Informacion Personal</h4>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+          </div>
+     </div>
+	</section>
+ <main>
+		<form method="POST" action="" class="formulario" id="formulario">
+            {% csrf_token %}
+           {{ form.as_p }}
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+				<button type="submit" class="formulario__btn">Registrar</button>
+				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+			</div>
+		</form>
+	</main>
+
+
+{% endblock %}
